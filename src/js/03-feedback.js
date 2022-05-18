@@ -44,10 +44,10 @@ function handleFormDataInput(e) {
 
     const storage = localStorage.getItem(STORAGE_KEY);  
     const parceStorage = JSON.parse(storage);
+    formData[e.target.name] = e.target.value;
+
     const resultStorage = { ...parceStorage, ...formData };
 
-        formData[e.target.name] = e.target.value;
-    
         localStorage.setItem(STORAGE_KEY, JSON.stringify(resultStorage));
     
     
