@@ -45,16 +45,13 @@ function saveTextareaText() {
 }
 function handleFormDataInput(e) {
 
-    // const storage = localStorage.getItem(STORAGE_KEY);  
-    // const parceStorage = JSON.parse(storage);
-    // formData[e.target.name] = e.target.value;
-
-    // const resultStorage = { ...parceStorage, ...formData };
-
-    //     localStorage.setItem(STORAGE_KEY, JSON.stringify(resultStorage));
+    const storage = localStorage.getItem(STORAGE_KEY);  
+    const parceStorage = JSON.parse(storage);
     formData[e.target.name] = e.target.value;
-    const currentData = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({...currentData, ...formData}))
+
+     resultStorage = { ...parceStorage, ...formData };
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(resultStorage));
     
     
 };
