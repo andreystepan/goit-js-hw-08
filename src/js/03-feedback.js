@@ -30,13 +30,25 @@ function saveTextareaText() {
 
     if (parseSaveMessage.email) {
         input.value = parseSaveMessage.email;
+        
     };
+    
     if (parseSaveMessage.message){
-        textarea.value = parseSaveMessage.message;  
+        textarea.value = parseSaveMessage.message;
+        
     };
+
+   
 }
 function handleFormDataInput(e) {
-    formData[e.target.name] = e.target.value;
+
+    const storage = localStorage.getItem(STORAGE_KEY);  
+    const parceStorage = JSON.parse(storage);
+    const resultStorage = { ...parceStorage, ...formData };
+
+        formData[e.target.name] = e.target.value;
     
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(resultStorage));
+    
+    
 };
