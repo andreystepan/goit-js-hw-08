@@ -17,9 +17,10 @@ function handleFormSubmit(e) {
     e.preventDefault();
     
     if (input.value !== '' && textarea.value !== '') {
-        console.log(resultStorage);
+        console.log(formData);
         e.target.reset();
         formData = {};
+        resultStorage = {};
         localStorage.removeItem(STORAGE_KEY);
     }
 };
@@ -30,12 +31,12 @@ function saveTextareaText() {
     const saveMessage = localStorage.getItem(STORAGE_KEY);
     const parseSaveMessage = JSON.parse(saveMessage);
 
-    if (parseSaveMessage.email) {
+    if (parseSaveMessage?.email) {
         input.value = parseSaveMessage.email;
         
     };
     
-    if (parseSaveMessage.message){
+    if (parseSaveMessage?.message){
         textarea.value = parseSaveMessage.message;
         
     };
@@ -44,13 +45,16 @@ function saveTextareaText() {
 }
 function handleFormDataInput(e) {
 
-    const storage = localStorage.getItem(STORAGE_KEY);  
-    const parceStorage = JSON.parse(storage);
+    // const storage = localStorage.getItem(STORAGE_KEY);  
+    // const parceStorage = JSON.parse(storage);
+    // formData[e.target.name] = e.target.value;
+
+    // const resultStorage = { ...parceStorage, ...formData };
+
+    //     localStorage.setItem(STORAGE_KEY, JSON.stringify(resultStorage));
     formData[e.target.name] = e.target.value;
-
-    const resultStorage = { ...parceStorage, ...formData };
-
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(resultStorage));
+    const currentData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({...currentData, ...formData}))
     
     
 };
