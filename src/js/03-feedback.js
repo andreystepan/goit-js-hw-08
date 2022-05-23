@@ -28,20 +28,21 @@ function handleFormSubmit(e) {
 
 function saveTextareaText() {
     
-    const saveMessage = localStorage.getItem(STORAGE_KEY);
-    const parseSaveMessage = JSON.parse(saveMessage);
+    // const saveMessage = localStorage.getItem(STORAGE_KEY);
+    const parseSaveMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
     if (parseSaveMessage?.email) {
         input.value = parseSaveMessage.email;
-        
+        formData.email = input.value;
     };
     
     if (parseSaveMessage?.message){
         textarea.value = parseSaveMessage.message;
+        formData.message = textarea.value;
         
     };
 
-   
+//    console.log(resultStorage)
 }
 function handleFormDataInput(e) {
 
